@@ -1,5 +1,13 @@
-import os, json, asyncio
+import os, json, asyncio, threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
 from telethon import TelegramClient, events, Button
+
+class H(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200); self.end_headers(); self.wfile.write(b'ok')
+    def log_message(self,*a): pass
+
+threading.Thread(target=lambda: HTTPServer(('0.0.0.0', int(os.environ.get('PORT',10000))), H).serve_forever(), daemon=True).start()
 
 api_id   = int(os.environ['30523401'])
 api_hash = os.environ['50bb2db1976e4bcbacc14b32d8287b82']
