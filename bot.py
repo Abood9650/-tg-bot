@@ -9,9 +9,9 @@ class H(BaseHTTPRequestHandler):
 
 threading.Thread(target=lambda: HTTPServer(('0.0.0.0', int(os.environ.get('PORT',10000))), H).serve_forever(), daemon=True).start()
 
-api_id   = int(os.environ['30523401'])
-api_hash = os.environ['50bb2db1976e4bcbacc14b32d8287b82']
-token    = os.environ['8537132771:AAEMa0YGQMBz_26Xbw4fOpt3X50SAIp3rW8']
+api_id   = int(os.environ['API_ID'])
+api_hash = os.environ['API_HASH']
+token    = os.environ['BOT_TOKEN']
 SOURCE   = 'K07Bbot'
 
 items = json.load(open('files.json'))
